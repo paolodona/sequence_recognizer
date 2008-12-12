@@ -3,6 +3,10 @@ require 'test/unit'
 require 'sequence_recognizer'
 require 'yaml'
 require 'benchmark'
+require 'rubygems'
+gem 'ruby-debug'
+require 'ruby-debug'
+Debugger.start
 
 class SequenceRecognizerTest < Test::Unit::TestCase
   include SequenceRecognizer
@@ -25,9 +29,8 @@ class SequenceRecognizerTest < Test::Unit::TestCase
   end 
   
   def test_extract_sequences_five_digits
-    assert_equal [%w{81702 81802 81902}], extract_sequences_from(%w{81702 81802 81902 82702 82802}, 5) 
+	  assert_equal [%w{81702 81802 81902}], extract_sequences_from(%w{81702 81802 81902 82702 82802}, 5) 
   end 
-
 
   def test_performance
     available_shortcodes = YAML.load_file('available.yml')
